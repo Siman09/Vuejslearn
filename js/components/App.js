@@ -1,20 +1,12 @@
-import method from "./methods.js";
 import buttons from "./AppButton.js";
+import inputs from "./Appinput.js";
 export default
     {
 
         // <button class="rounded mx-2 my-2 py-1 px-2 bg-red-400 hover:bg-red-500"  v-on:click="go">Add</button>
         template:
             `
-        
-        <method></method>
-
-
-         <AppButton type="primary" v-on:click="go">ADD File</AppButton>
-
-
-
-        <input v-model="enterdata" class="text-black px-2 py-1"></input>
+            <AppInput @inherited="go"></AppInput><br><br>
         <h3 class="font-bold py-2"  >In Progress</h3>
         <ul>
             <li class="border px-2 py-2" v-for="assignment in inprogress" :key="assignment.id">{{ assignment.name }}<input v-model="assignment.Complete" class="mx-2" type="checkbox"></input></li>
@@ -27,8 +19,9 @@ export default
         <ul>
     `,
         components: {
-            method,
-            AppButton: buttons
+
+            AppButton: buttons,
+            AppInput: inputs,
         },
         computed: {
             inprogress() {
@@ -52,19 +45,15 @@ export default
 
         methods: {
 
-            go() {
-                this.buttonClick = false;
+            go(obj) {
                 setTimeout(() => {
 
-                    if (this.enterdata.trim() !== '') {
-                        this.assignments.push({ name: this.enterdata, complete: false, id: this.assignments.length + 1 });
-                        this.enterdata = '';
+                
+                        this.assignments.push({ name: obj, complete: false, id: this.assignments.length + 1 });
+                        // this.obj = '';
                         alert('Enter Sucessfully');
-                    } else {
-
-                        alert('Please Enter Assignment Name');
-                    }
-                }, 1000);
+                    
+                }, 1);
 
             }
 
