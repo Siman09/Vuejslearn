@@ -3,15 +3,19 @@ import buttons from "./AppButton.js";
 export default
     {
 
+        // <button class="rounded mx-2 my-2 py-1 px-2 bg-red-400 hover:bg-red-500"  v-on:click="go">Add</button>
         template:
             `
         
         <method></method>
-         <AppButton>ADD File</AppButton>
+
+
+         <AppButton type="primary" v-on:click="go">ADD File</AppButton>
+
+
+
         <input v-model="enterdata" class="text-black px-2 py-1"></input>
-        <button class="rounded mx-2 my-2 py-1 px-2 bg-red-400 hover:bg-red-500"  v-on:click="go">Add</button>
-        
-        <h3 class="font-bold py-2">In Progress</h3>
+        <h3 class="font-bold py-2"  >In Progress</h3>
         <ul>
             <li class="border px-2 py-2" v-for="assignment in inprogress" :key="assignment.id">{{ assignment.name }}<input v-model="assignment.Complete" class="mx-2" type="checkbox"></input></li>
         </ul>
@@ -22,8 +26,10 @@ export default
             </li>
         <ul>
     `,
-        components: { method,
-            AppButton:buttons },
+        components: {
+            method,
+            AppButton: buttons
+        },
         computed: {
             inprogress() {
                 return this.assignments.filter(a => !a.Complete);
@@ -58,7 +64,7 @@ export default
 
                         alert('Please Enter Assignment Name');
                     }
-                }, 2000);
+                }, 1000);
 
             }
 
